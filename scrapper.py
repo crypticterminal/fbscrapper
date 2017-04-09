@@ -6,8 +6,8 @@ import json
 import mysql.connector
 
 def connect_db():
-    connection = mysql.connector.connect(user='nekadmin', 
-                                        password='Itivae23@!', 
+    connection = mysql.connector.connect(user='user', 
+                                        password='abc123', 
                                         host = 'localhost', 
                                         database='nekscrapper')
     return connection
