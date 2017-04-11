@@ -45,8 +45,8 @@ def main():
     cursor = connection.cursor()
     
     #SQL statement for adding Facebook page data to database
-    insert_info = "INSERT INTO nekdata(fb_id, message, story, created_time) VALUES ('%s', '%s', '%s', '%s')"
-    i = 0
+    insert_info = "INSERT INTO nekdata(fb_id, message, story, created_time) VALUES (%s, %s, %s, %s)"
+
     for company in list_companies:
         #make graph api url with company username
         current_page = graph_url + company + auth
@@ -66,24 +66,17 @@ def main():
         
         #print post messages and ids
         for post in json_fbposts:
+            fb_id = post.get("id", "")
+            message = post.get("message", "")
+            story = post.get("story", "")
+            created_time = post.get("created_time", "")
             
-            try:
-                #try to print out data
-                print post["id"]
-                print post["message"]
-                print post["story"]
-                print post["created_time"]
-                
-            except Exception:
-                print "Key error"
-            
-            
-        #insert the data we pulled into db
-        cursor.execute(insert_info %(page_data[i]['id'], page_data[i]['message'], page_data[i]['story'], page_data[i]['created_time']))
+            #insert the data we pulled into db
+
+            cursor.execute(insert_info, (fb_id, message, story, created_time))
         
-        #commit the data to the db
-        connection.commit()
-        i = i+1
+            #commit the data to the db
+            connection.commit()
         
     connection.close()
 
