@@ -33,8 +33,8 @@ def render_to_json(graph_url):
     
 def main():
     #simple data pull App Secret and App ID
-    APP_SECRET = "275335b52baed6fbd09e0f7aac99f087"
-    APP_ID = "1676175652687529"
+    APP_SECRET = ""
+    APP_ID = ""
     
     #to find go to page's FB page, at the end of URL find username
     list_companies = ["ParkerPieCo"]
